@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/Icon.png</file>
+        <file>Images/New.png</file>
+        <file>Images/Open.png</file>
+        <file>Images/Save.png</file>
+        <file>Images/SaveAs.png</file>
+        <file>Images/Settings.png</file>
+        <file>Images/ZoomIn.png</file>
+        <file>Images/ZoomOut.png</file>
+        <file>Images/ZoomReset.png</file>
+    </qresource>
+</RCC>
