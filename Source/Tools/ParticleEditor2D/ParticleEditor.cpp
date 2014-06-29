@@ -92,7 +92,7 @@ int ParticleEditor::Run()
 
 void ParticleEditor::New()
 {
-    Open("Urho2D/sun.pex");
+    Open("Urho2D/fire.pex");
 
     fileName_.Clear();
 }

@@ -56,7 +56,9 @@ EmitterAttributeEditor::EmitterAttributeEditor(Context* context) :
 
     CreateEmitterTypeEditor();
 
-    vBoxLayout_->addSpacing(8);;
+    vBoxLayout_->addSpacing(8);
+
+    angleEditor_ = CreateValueVarianceEditor(tr("Angle"), 0.0f, 360.0f);
 
     CreateGravityTypeEditor();
     CreateRadialTypeEditor();
@@ -184,7 +186,7 @@ void EmitterAttributeEditor::HandleValueVarianceEditorValueChanged(float average
     else if (s == minRadiusEditor_)
     {
         effect->SetMinRadius(minRadiusEditor_->value());
-
+        effect->SetMinRadiusVariance(minRadiusEditor_->variance());
     }
     else if (s == rotatePerSecondEditor_)
     {
@@ -216,7 +218,7 @@ void EmitterAttributeEditor::HandleUpdateWidget()
     tangentialAccelerationEditor_->setValue(effect_->GetTangentialAcceleration(), effect_->GetTangentialAccelVariance());
 
     maxRadiusEditor_->setValue(effect_->GetMaxRadius(), effect_->GetMaxRadiusVariance());
-    minRadiusEditor_->setValue(effect_->GetMinRadius(), 0.0f);
+    minRadiusEditor_->setValue(effect_->GetMinRadius(), effect_->GetMinRadiusVariance());
     rotatePerSecondEditor_->setValue(effect_->GetRotatePerSecond(), effect_->GetRotatePerSecondVariance());
 }
 
@@ -305,22 +307,21 @@ void EmitterAttributeEditor::CreateGravityTypeEditor()
     connect(sourcePositionVarianceEditor_, SIGNAL(valueChanged(const Vector2&)), this, SLOT(HandleSourcePositionVarianceEditorValueChanged(const Vector2&)));
 
     speedEditor_ = CreateValueVarianceEditor(tr("Speed"), 0.0f, 2000.0f);
-    angleEditor_ = CreateValueVarianceEditor(tr("Angle"), 0.0f, 360.0f);
 
     gravityEditor_ = new Vector2Editor(tr("Gravity"));
     vBoxLayout_->addWidget(gravityEditor_);
 
-    gravityEditor_->setRange(Vector2::ONE * -1000.0f, Vector2::ONE * 3000.0f);
+    gravityEditor_->setRange(Vector2::ONE * -3000.0f, Vector2::ONE * 3000.0f);
     connect(gravityEditor_, SIGNAL(valueChanged(const Vector2&)), this, SLOT(HandleGravityEditorValueChanged(const Vector2&)));
 
-    radialAccelerationEditor_ = CreateValueVarianceEditor(tr("Radial Acceleration"), -5000.0f, 5000.0f);
-    tangentialAccelerationEditor_ = CreateValueVarianceEditor(tr("Tangential AccelVariance"), -5000.0f, 5000.0f);
+    radialAccelerationEditor_ = CreateValueVarianceEditor(tr("Radial Acceleration"), -10000.0f, 10000.0f);
+    tangentialAccelerationEditor_ = CreateValueVarianceEditor(tr("Tangential AccelVariance"), -50000.0f, 50000.0f);
 }
 
 void EmitterAttributeEditor::CreateRadialTypeEditor()
 {
     maxRadiusEditor_ = CreateValueVarianceEditor(tr("MaxRadius"), 0.0f, 1000.0f);
-    minRadiusEditor_ = CreateValueVarianceEditor(tr("MinRadius"), 0.0f, 100.0f);
+    minRadiusEditor_ = CreateValueVarianceEditor(tr("MinRadius"), 0.0f, 1000.0f);
 
     const float s = 2.0f;
     rotatePerSecondEditor_ = CreateValueVarianceEditor(tr("RotatePerSecond"), -360.0f * s, 360.0f * s);
@@ -330,7 +331,6 @@ void EmitterAttributeEditor::ShowGravityTypeEditor(bool visible)
 {
     sourcePositionVarianceEditor_->setVisible(visible);
     speedEditor_->setVisible(visible);
-    angleEditor_->setVisible(visible);
 
     gravityEditor_->setVisible(visible);    
     radialAccelerationEditor_->setVisible(visible);
