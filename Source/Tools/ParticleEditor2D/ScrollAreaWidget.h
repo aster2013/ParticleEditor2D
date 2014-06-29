@@ -41,7 +41,6 @@ public:
 
 protected:
     QHBoxLayout* AddHBoxLayout();
-    void AddLineShape();
 
     QVBoxLayout* vBoxLayout_;
 };

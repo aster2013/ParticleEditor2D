@@ -47,16 +47,16 @@ EmitterAttributeEditor::EmitterAttributeEditor(Context* context) :
     CreateMaxParticlesEditor();
     CreateDurationEditor();
     
-    AddLineShape();
+    vBoxLayout_->addSpacing(8);
 
     CreateTextureEditor();
     CreateBlendModeEditor();
 
-    AddLineShape();
+    vBoxLayout_->addSpacing(8);
 
     CreateEmitterTypeEditor();
 
-    AddLineShape();
+    vBoxLayout_->addSpacing(8);;
 
     CreateGravityTypeEditor();
     CreateRadialTypeEditor();

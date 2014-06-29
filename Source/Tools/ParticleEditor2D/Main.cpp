@@ -22,6 +22,7 @@
 
 #include "Application.h"
 #include "ParticleEditor.h"
+#include <QFile>
 
 int Main()
 {
@@ -29,6 +30,11 @@ int Main()
     char** argv = 0;
     Urho3D::SharedPtr<Urho3D::Context> context(new Urho3D::Context());
     Urho3D::ParticleEditor editor(argc, argv, context);
+
+    QFile file(":/qdarkstyle/style.qss");
+    if (file.open(QFile::ReadOnly | QFile::Text))
+        editor.setStyleSheet(QLatin1String(file.readAll()));
+
     return editor.Run();
 }
 

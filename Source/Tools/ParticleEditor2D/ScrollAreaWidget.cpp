@@ -54,14 +54,4 @@ QHBoxLayout* ScrollAreaWidget::AddHBoxLayout()
 	return hBoxLayout;
 }
 
-void ScrollAreaWidget::AddLineShape()
-{
-    QFrame* frame = new QFrame();
-    vBoxLayout_->addSpacing(4);
-    vBoxLayout_->addWidget(frame);
-    vBoxLayout_->addSpacing(4);
-
-    frame->setFrameShape(QFrame::HLine);
-}
-
 }
