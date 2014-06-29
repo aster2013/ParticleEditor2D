@@ -304,17 +304,17 @@ void EmitterAttributeEditor::CreateGravityTypeEditor()
     sourcePositionVarianceEditor_->setRange(Vector2::ZERO, Vector2::ONE * 1000.0f);    
     connect(sourcePositionVarianceEditor_, SIGNAL(valueChanged(const Vector2&)), this, SLOT(HandleSourcePositionVarianceEditorValueChanged(const Vector2&)));
 
-    speedEditor_ = CreateValueVarianceEditor(tr("Speed"), 0.0f, 1000.0f);
+    speedEditor_ = CreateValueVarianceEditor(tr("Speed"), 0.0f, 2000.0f);
     angleEditor_ = CreateValueVarianceEditor(tr("Angle"), 0.0f, 360.0f);
 
     gravityEditor_ = new Vector2Editor(tr("Gravity"));
     vBoxLayout_->addWidget(gravityEditor_);
 
-    gravityEditor_->setRange(Vector2::ONE * -1000.0f, Vector2::ONE * 1000.0f);
+    gravityEditor_->setRange(Vector2::ONE * -1000.0f, Vector2::ONE * 3000.0f);
     connect(gravityEditor_, SIGNAL(valueChanged(const Vector2&)), this, SLOT(HandleGravityEditorValueChanged(const Vector2&)));
 
-    radialAccelerationEditor_ = CreateValueVarianceEditor(tr("Radial Acceleration"), -1000.0f, 1000.0f);
-    tangentialAccelerationEditor_ = CreateValueVarianceEditor(tr("Tangential AccelVariance"), -1000.0f, 1000.0f);
+    radialAccelerationEditor_ = CreateValueVarianceEditor(tr("Radial Acceleration"), -5000.0f, 5000.0f);
+    tangentialAccelerationEditor_ = CreateValueVarianceEditor(tr("Tangential AccelVariance"), -5000.0f, 5000.0f);
 }
 
 void EmitterAttributeEditor::CreateRadialTypeEditor()

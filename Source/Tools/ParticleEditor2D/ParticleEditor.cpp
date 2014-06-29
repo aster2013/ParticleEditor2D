@@ -85,7 +85,7 @@ int ParticleEditor::Run()
 
     QTimer timer;
     connect(&timer, SIGNAL(timeout()), this, SLOT(OnTimeout()));
-    timer.start(30);
+    timer.start(16);
 
     return QApplication::exec();
 }
